@@ -1,6 +1,6 @@
 {
   "name": "node-lectio",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Lectio calendar to .ics converter",
   "main": "node-lectio.js",
   "scripts": {
@@ -11,5 +11,14 @@
   "dependencies": {
     "cheerio": "^0.19.0",
     "html-entities": "^1.1.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmikkelsen/node-lectio-til-ics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emmikkelsen/node-lectio-til-ics/issues"
+  },
+  "homepage": "https://github.com/emmikkelsen/node-lectio-til-ics#readme"
 }
