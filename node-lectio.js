@@ -47,6 +47,7 @@ function lectio(res,amount,type,school,person){
 	this.amount = amount;
 	this.type = type;
 	var now = new Date();
+	this.startTime = now.getTime();
 	this.nowTime = lectioHelper.dateFormat(now);
 	if(Math.floor(now.getMinutes()/15)==0){
 			var min = "00";
@@ -73,7 +74,7 @@ function lectio(res,amount,type,school,person){
 	}
 
 	this.finishedProcessing = function(add){
-		var load = Number(new Date().getTime()) - Number(server.startTime);
+		var load = Number(new Date().getTime()) - Number(this.startTime);
 		//console.log(load + "ms");
 		//console.log(this.amount + ": " + this.type + " - " + this.school + " - " + this.person);
 		server.storage.write("sequence", server.sequence,null);
@@ -82,7 +83,7 @@ function lectio(res,amount,type,school,person){
 		server.amnt++;
 	}
 
-	this.processEvent = function(titleString,callback,index){
+	this.processEvent = function(titleString,callback){
 
 		var lines = titleString.split("\n");
 		if(lines[0].substr(0,1) == "A"){
@@ -276,7 +277,7 @@ function lectio(res,amount,type,school,person){
        				var promise = new Promise(function(resolve,reject){
      					l.processEvent(item.attribs.title,function(output){
         					resolve(output);
-        				},x);
+        				});
         			});
         			promise.then(function(output){
         				l.res.write(output);
