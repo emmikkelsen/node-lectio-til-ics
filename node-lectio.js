@@ -7,9 +7,7 @@ var lectioHelper = require('./lectio-helper');
 var httpTools = require('./http-tools');
 
 var server = http.createServer(function (req, res) {
-	res.writeHead(200, { 'content-type': 'text/json; charset=utf-8' });
-	this.startTime = new Date().getTime();
-	this.sequence++;
+	
 	if(url.parse(req.url).query != null){
 		qs = httpTools.splitQuery(url.parse(req.url).query);
 		if(String(typeof(qs.elev)) != "undefined"){
@@ -26,13 +24,20 @@ var server = http.createServer(function (req, res) {
 			var amount = Number(qs.uger);
 		}
 		if(Number(person) && Number(school)){
+			res.writeHead(200, { 'content-type': 'text/json; charset=utf-8' });
+			this.sequence++;
 			lec = new lectio(res,amount,type,school,person);
 			lec.generate(res);
 		}else{
-			res.end();
+			res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' });
+			res.end("ERROR");
 		}
 	}
-	else res.end();
+	else{
+		res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' });
+		res.end("ERROR");
+	}
+
 });
 
 function lectio(res,amount,type,school,person){
