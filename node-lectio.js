@@ -32,13 +32,6 @@ var server = http.createServer(function (req, res) {
 
         if(Number(person) && Number(school)){
             res.writeHead(200, { 'content-type': 'text/json; charset=utf-8' });
-            if(person == 12527363226){ // Claus Hakon Krabbesmark - Maribo Gymnasium
-                amount = 10;
-            }else if(person == 5554641559){ // Martin Brix Petersen - Paderup Gymansium
-                amount = 17;
-            }else if(person == 10486739908){ // Trine Johansson - Paderup Gymansium
-                amount = 6;
-            }
             
             this.sequence++;
             lec = new lectio(res,amount,type,school,person);
