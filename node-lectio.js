@@ -240,11 +240,6 @@ function lectio(res,amount,type,school,person){
         summary = summary.substr(0,summary.length-3);
         if(summary=="" && String(typeof(subject)) != "") summary += subject;
 
-        if(person == 3384980376){ //Asger Bo Wille
-            if(String(typeof(location)) != "undefined") summary = location + " - " + summary;
-        }
-
-
         o = "BEGIN:VEVENT" + "\r\n";
         o += "UID:" + crypto.createHash('md5').update(teacher + start + end).digest('hex') + "@emilba.ch" + "\r\n";
         o += "SEQUENCE:" + server.sequence + "\r\n"; //This is important, to push updates
