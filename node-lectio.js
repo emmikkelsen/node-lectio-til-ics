@@ -88,7 +88,7 @@ function lectio(res,amount,type,school,person){
         var load = Number(new Date().getTime()) - Number(this.startTime);
         //console.log(load + "ms");
         //console.log(this.amount + ": " + this.type + " - " + this.school + " - " + this.person);
-        server.storage.write("sequence", server.sequence,null);
+        server.storage.write("sequence", server.sequence,()=>{});
         this.res.end(this.endOutput());
         server.loadTimes += load;
         server.amnt++;
